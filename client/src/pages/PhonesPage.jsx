@@ -2,12 +2,14 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Loading from '../../src/components/Loading'
+
 
 const API_URL = "http://localhost:5005"
 
 function PhonesPage() {
 
-    const [phones, setPhones] = useState([])
+    const [phones, setPhones] = useState()
 
     useEffect(() => {
         axios
@@ -21,15 +23,15 @@ function PhonesPage() {
   return (
     <div>
         <h1 style={{margin: '20px'}}>List of phones</h1>
-        <div class="list-group">
-        {phones.map((phone) => {
-            return(
-                <div key={phone.id}>
-                    <Link class="list-group-item list-group-item-action" to={`/phones/${phone.id}`}>{phone.name} ({phone.manufacturer})</Link>
-                </div>
-            )
-        })}
-        </div>
+        <ul class="list-group">
+            {phones ? phones.map((phone) => {
+                return(
+                    <li key={phone.id}>
+                        <Link class="list-group-item list-group-item-action" to={`/${phone.id}`}>{phone.name} ({phone.manufacturer})</Link>
+                    </li>
+                )
+            }) : <Loading />}
+        </ul>
     </div>
   );
 }

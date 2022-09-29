@@ -1,17 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 import PhoneDetailsPage from "./pages/PhoneDetailsPage";
 import PhonesPage from "./pages/PhonesPage";
-
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<HomePage></HomePage>}></Route>
-        <Route path='/phones' element={<PhonesPage></PhonesPage>}></Route>
-        <Route path='/phones/:id' element={<PhoneDetailsPage></PhoneDetailsPage>}></Route>
+        <Route path='/' element={<PhonesPage></PhonesPage>}></Route>
+        <Route path='/:id' element={<PhoneDetailsPage></PhoneDetailsPage>}></Route>
       </Routes>
     </div>
   );
